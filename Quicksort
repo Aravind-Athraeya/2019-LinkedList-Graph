@@ -42,24 +42,40 @@ void push(node** head_ref, int new_data)
 	(*head_ref) = new_node;
 }
 
+int findListLength(ListNode *list) //returns length of list
+{
+	int counter = 0;
+	for (; list != NULL; list = list->Next)
+	{
+		++counter;
+	}
+	return counter;
+}
 
 
 
 
 
 
-node* GetPivot(node* head, node*  tail, node** newHead, node**  newEnd) {
-
-	node*  temp = NULL;
+node* GetPivot(node* head) {
 
 
 
+	int list_length = findListLength(head);
+	int pivot_position = rand() % list_length;
 
-	return temp;
+	for (int count = 0; count < pivot_position; count++)
+	{
+		head = head->Next;
+	}
+	return head;
+
+
 
 
 
 }
+
 
 node *getTail(node *cur)
 {
@@ -68,25 +84,69 @@ node *getTail(node *cur)
 	return cur;
 }
 
-void QuickSort(node* head, node* tail) {
+
+node * MergeAndReturn(node* left_list, node * pivot, node * right_list)
+{
+	pivot->Next = right_list;
+
+	if (left_list == NULL)	return pivot;
+
+	ListNode * left_tail = getTail(left_list);
+	left_tail->Next = pivot;
+
+	return left_list;
+}
 
 
-	node *newHead = NULL;
-	node *newEnd = NULL;
 
-	node* pivot = GetPivot(head, tail, &newHead, &newEnd);
+node* QuickSort(node* head) {
+
+
+	node *leftSub = NULL;
+	node *rightSub = NULL;
 
 
 	if ((head == NULL) || (head->Next == NULL))
 	{
-		return;
+		return head;
 	}
 
 
+	node* pivot = GetPivot(head);
 
 
 
-	QuickSort(newHead,newEnd);
+
+
+	for (node * current_node = head; current_node != NULL;)
+	{
+	
+		node * next_node = current_node->Next;
+
+		if (current_node != pivot)
+		{
+			if (current_node->value <= pivot->value)
+			{
+				current_node->Next = leftSub;
+				leftSub = current_node;
+			}
+			else
+			{
+				current_node->Next = rightSub;
+				rightSub = current_node;
+			}
+		}
+		current_node = next_node;
+	}
+
+	return MergeAndReturn(QuickSort(leftSub), pivot, QuickSort(rightSub));
+
+
+
+
+
+
+
 
 	//	return MergedSortedList;
 }
@@ -103,9 +163,9 @@ int main()
 	push(&lstOne, 42);
 	push(&lstOne, 53);
 	push(&lstOne, 62);
-	push(&lstOne, 03);
+	push(&lstOne, 3);
 
-	QuickSort(lstOne, getTail(lstOne));
+  node* find = 	QuickSort(lstOne);
 
 	return 0;
 }
