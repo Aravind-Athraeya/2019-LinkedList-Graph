@@ -1,1 +1,111 @@
-2019-LinkedList&Graph
+// ConsoleApplication2.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+
+#include <iostream>
+#include<conio.h>
+#include <sstream>
+#include<stdio.h>
+#include<stdlib.h>
+#include <queue>
+#include <unordered_set>
+
+using namespace std;
+
+
+
+
+typedef struct ListNode
+{
+	int value;
+	struct ListNode *header;
+	struct ListNode *Next;
+	struct ListNode *tailer;
+}node;
+
+
+
+
+void push(node** head_ref, int new_data)
+{
+	/* allocate node */
+	node* new_node = new node();
+
+	/* put in the data  */
+	new_node->value = new_data;
+
+	/* link the old list off the new node */
+	new_node->Next = (*head_ref);
+
+	/* move the head to point to the new node */
+	(*head_ref) = new_node;
+}
+
+
+
+
+
+
+
+node* GetPivot(node* head, node*  tail, node** newHead, node**  newEnd) {
+
+	node*  temp = NULL;
+
+
+
+
+	return temp;
+
+
+
+}
+
+node *getTail(node *cur)
+{
+	while (cur != NULL && cur->Next != NULL)
+		cur = cur->Next;
+	return cur;
+}
+
+void QuickSort(node* head, node* tail) {
+
+
+	node *newHead = NULL;
+	node *newEnd = NULL;
+
+	node* pivot = GetPivot(head, tail, &newHead, &newEnd);
+
+
+	if ((head == NULL) || (head->Next == NULL))
+	{
+		return;
+	}
+
+
+
+
+
+	QuickSort(newHead,newEnd);
+
+	//	return MergedSortedList;
+}
+
+
+int main()
+{
+	node *lstOne = NULL;
+
+	push(&lstOne, 2);
+	push(&lstOne, 3);
+	push(&lstOne, 21);
+	push(&lstOne, 33);
+	push(&lstOne, 42);
+	push(&lstOne, 53);
+	push(&lstOne, 62);
+	push(&lstOne, 03);
+
+	QuickSort(lstOne, getTail(lstOne));
+
+	return 0;
+}
