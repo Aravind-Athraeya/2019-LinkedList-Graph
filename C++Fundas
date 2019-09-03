@@ -1,1 +1,75 @@
 
+// ConsoleApplication2.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+
+#include <iostream>
+#include<conio.h>
+#include <sstream>
+#include<stdio.h>
+#include<stdlib.h>
+#include <queue>
+#include <unordered_set>
+
+using namespace std;
+
+void swap_num(int &i, int &j) {
+
+	int temp = i;
+	i = j;
+	j = temp;
+
+}
+
+
+int triple(int const &i) {
+	//he parameter won’t be changed. However, by making i a reference to the argument, this saves the computational cost of making a copy of the argument.
+	return i * 3;
+
+}
+// Funda 12th Std
+int main()
+{
+	int soda = 99;
+	// References
+	int &pop = soda;
+
+
+	// Pointers -- Pass by Reference
+
+
+	int a = 100;
+	int b = 200;
+	swap_num(a, b);
+
+	// Pass by reference with const
+	int side = 5;
+
+	triple(side);
+
+	//When & is used in a declaration, it is a reference operator.[left side]
+	//	When & is not used in a declaration, it is an address operator. [right side]
+	//Prints address
+	std::cout << &side << "\n";
+
+
+	// Pointers
+
+//	a pointer stores a memory address.
+	int gum = 8;
+	int* ptr = &gum;
+
+
+
+	// Dereferences
+	//When * is used in a declaration, it is creating a pointer.[left side]
+	//	When * is not used in a declaration, it is a dereference operator.[right side]
+
+	int blah = *ptr; //obtain the value pointed to by a variable
+
+	// Null pointer
+	//nullptr is a new keyword introduced in C++11. It provides a typesafe pointer value representing an empty pointer.
+		int* ptsr = nullptr;
+	return 0;
+}
