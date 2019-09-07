@@ -1,6 +1,6 @@
 
 // ConsoleApplication2.cpp : Defines the entry point for the console application.
-//
+//https://www.learncpp.com/cpp-tutorial/6-8-pointers-and-arrays/
 
 #include "stdafx.h"
 
@@ -68,8 +68,18 @@ int main()
 
 	int blah = *ptr; //obtain the value pointed to by a variable
 
+        int array[5] = { 9, 7, 5, 3, 1 };
+ 
+	std::cout << sizeof(array) << '\n'; // will print sizeof(int) * array length
+ 
+        int *ptr = array;
+        std::cout << sizeof(ptr) << '\n'; // will print the size of a pointer
+
+
+
 	// Null pointer
 	//nullptr is a new keyword introduced in C++11. It provides a typesafe pointer value representing an empty pointer.
 		int* ptsr = nullptr;
 	return 0;
+	
 }
